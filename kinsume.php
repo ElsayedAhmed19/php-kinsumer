@@ -59,12 +59,12 @@ function kinsume(
             } catch (KinesisException $ex) {
                 if ($exceptionHandler) {
                     call_user_func_array($exceptionHandler, [$ex]);
-                } else {
-                    sleep($sleep);
                 }
 
                 continue;
             }
+
+            sleep($sleep);
         } while ($millisBehindLatest > 0);
     }
 }
