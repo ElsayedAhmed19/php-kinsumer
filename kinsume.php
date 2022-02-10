@@ -33,35 +33,34 @@ function kinsume(
         $shardIterator = "";
         $millisBehindLatest = 0;
         do {
+            if (!$shardIterator) {
+                $iteratorConfigs = array_merge([
+                'StreamName' => $streamName,
+                'ShardId' => $shardId,
+            ], call_user_func_array($shardIteratorBuilder, [$shardId]));
+                $res = $kinesisClient->getShardIterator($iteratorConfigs);
+                $shardIterator = $res->get('ShardIterator');
+            }
             try {
-                if (!$shardIterator) {
-                    $iteratorConfigs = array_merge([
-                    'StreamName' => $streamName,
-                    'ShardId' => $shardId,
-                ], call_user_func_array($shardIteratorBuilder, [$shardId]));
-                    $res = $kinesisClient->getShardIterator($iteratorConfigs);
-                    $shardIterator = $res->get('ShardIterator');
-                }
-
                 $res = $kinesisClient->getRecords([
                     'Limit' => $recordsLimit,
                     'ShardIterator' => $shardIterator
                 ]);
-
-                $shardIterator = $res->get('NextShardIterator');
-                $millisBehindLatest = $res->get('MillisBehindLatest');
-
-                foreach ($res->search('Records[].[SequenceNumber, Data]') as $data) {
-                    list($sequenceNumber, $item) = $data;
-                    $seqNumber = $sequenceNumber;
-                    call_user_func_array($dataHandler, [$shardId, $seqNumber, $item]);
-                }
             } catch (KinesisException $ex) {
                 if ($exceptionHandler) {
                     call_user_func_array($exceptionHandler, [$ex]);
                 }
 
                 continue;
+            }
+
+            $shardIterator = $res->get('NextShardIterator');
+            $millisBehindLatest = $res->get('MillisBehindLatest');
+
+            foreach ($res->search('Records[].[SequenceNumber, Data]') as $data) {
+                list($sequenceNumber, $item) = $data;
+                $seqNumber = $sequenceNumber;
+                call_user_func_array($dataHandler, [$shardId, $seqNumber, $item]);
             }
 
             sleep($sleep);
