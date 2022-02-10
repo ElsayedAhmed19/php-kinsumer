@@ -149,16 +149,16 @@
         },
         {
             "name": "elsayed/php-kinsumer",
-            "version": "v1.0.3",
+            "version": "v1.0.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ElsayedAhmed19/php-kinsumer.git",
-                "reference": "5f6eb5b5dc45e66fb84179408cc1cd44461f3eb4"
+                "reference": "1b74915e09aeb0744d70eae5db1e3adc130e3599"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ElsayedAhmed19/php-kinsumer/zipball/5f6eb5b5dc45e66fb84179408cc1cd44461f3eb4",
-                "reference": "5f6eb5b5dc45e66fb84179408cc1cd44461f3eb4",
+                "url": "https://api.github.com/repos/ElsayedAhmed19/php-kinsumer/zipball/1b74915e09aeb0744d70eae5db1e3adc130e3599",
+                "reference": "1b74915e09aeb0744d70eae5db1e3adc130e3599",
                 "shasum": ""
             },
             "require": {
@@ -177,9 +177,9 @@
             ],
             "description": "a very simple kinesis stream consumer for PHP 8",
             "support": {
-                "source": "https://github.com/ElsayedAhmed19/php-kinsumer/tree/v1.0.3"
+                "source": "https://github.com/ElsayedAhmed19/php-kinsumer/tree/v1.0.4"
             },
-            "time": "2022-01-10T12:30:24+00:00"
+            "time": "2022-02-10T13:07:05+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
