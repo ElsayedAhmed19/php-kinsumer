@@ -1,5 +1,5 @@
 {
-    "name": "speakol/php-kinsumer",
+    "name": "speakol/php-kinsumer-elsayed-fork",
     "description": "a very simple kinesis stream consumer for PHP 8",
     "type": "library",
     "license": "Apache-2.0",
