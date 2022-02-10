@@ -33,5 +33,6 @@ kinsume(
     recordsLimit: 1000,
     exceptionHandler: function (Exception $ex) {
         var_dump($ex);
-    }
+    },
+    sleep: 5
 );
